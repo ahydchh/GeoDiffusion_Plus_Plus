@@ -1,0 +1,16 @@
+path: datasets/nuimages
+train: train
+val: val
+test: val
+
+names:
+  0: car
+  1: truck
+  2: trailer
+  3: bus
+  4: construction_vehicle
+  5: bicycle
+  6: motorcycle
+  7: pedestrian
+  8: traffic_cone
+  9: barrier

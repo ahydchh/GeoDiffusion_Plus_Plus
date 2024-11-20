@@ -1,2 +1,0 @@
-CKPT_PATH=geodiffusion-nuimages-256x256
-accelerate launch --multi_gpu --main_process_port=$(python random_port.py)  --gpu_ids 6,7 --num_processes=2 ntest_geodiffusion.py $CKPT_PATH --dataset_config_name configs/data/nuimage_256x256.py --prompt_version v1 --num_bucket_per_side 256 256 ${PY_ARGS}

@@ -37,7 +37,7 @@ for d in tqdm(dirs):
         num_samples = int(target_dir[-1])
         score = eval('data/eval_nuimages',target_dir, num_samples)
     else:
-        f'{dir}/val/'
+        target_dir = f'{dir}/val/'
         target_dir = os.path.join(target_dir, os.listdir(target_dir)[0])
         num_samples = int(target_dir[-1])
         score = eval('data/eval_nuimages',target_dir, num_samples)

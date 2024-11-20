@@ -1,0 +1,1 @@
+python eval_map.py --weights yolov5s.pt --anno ../../data/coco/instances_val2017.json --image_dir ../../data/eval_coco --save_csv_path ../../mAP.csv --dir dirs.txt

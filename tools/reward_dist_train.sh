@@ -1,10 +1,10 @@
 # PY_ARGS=${@:1}
 EPOCHS=3
-NAME="score0.3_reward0.01_lr1e-5_sample1000_reward250_finetune"
+NAME="test"
 SAVE_FREQ=1000
 MODEL_PATH=geodiffusion-coco-stuff-256x256
 # MODEL_PATH=stable-diffusion-v1-5/stable-diffusion-v1-5
-accelerate launch --multi_gpu --main_process_port=$(python random_port.py) --mixed_precision fp16 --gpu_ids 1,2,3,5 --num_processes 4 \
+accelerate launch --multi_gpu --main_process_port=$(python random_port.py) --mixed_precision fp16 --gpu_ids 4,5,6,7 --num_processes 4 \
 reward_train_geodiffusion.py \
     --pretrained_model_name_or_path ${MODEL_PATH} \
     --prompt_version v1 --num_bucket_per_side 256 256 --bucket_sincos_embed --train_text_encoder \
@@ -17,10 +17,11 @@ reward_train_geodiffusion.py \
     --name ${NAME} \
     --save_ckpt_freq ${SAVE_FREQ} \
     --num_train_epochs ${EPOCHS} \
-    --reward_config ../Semi-DETR/configs/detr_ssod/detr_ssod_dino_detr_r50_coco_full_240k.py \
+    --reward_config thirdparty/Semi-DETR/configs/detr_ssod/detr_ssod_dino_detr_r50_coco_full_240k.py \
+    --reward_checkpoint thirdparty/Semi-DETR/models/semi_detr_coco_full.pth
     --grad_scale 0.01 \
     --min_timestep_rewarding 0 \
-    --max_timestep_rewarding 250 \
+    --max_timestep_rewarding 200 \
     --timestep_sampling_start 0 \
     --timestep_sampling_end 1000 \
     --lr_warmup_steps 1000 \

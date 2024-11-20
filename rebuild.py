@@ -81,7 +81,7 @@ pdb.set_trace()
 from tqdm import trange
 for i in trange(len(dataset)):
     source_file = dataset[i]["filename"]
-    destination_file = os.path.join("data/eval_nuimages","/".join(source_file.split("/")[3:]))
+    destination_file = os.path.join("data/eval_coco","/".join(source_file.split("/")[3:]))
     # 获取文件的目录路径
     folder_path = os.path.dirname(destination_file)
 
