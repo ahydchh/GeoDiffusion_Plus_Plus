@@ -23,7 +23,7 @@ pip install cython==0.29.33
 pip install -r requirements.txt
 pip install numpy==1.26.4
 ```
-这里的mmdetection源自https://github.com/open-mmlab/mmdetection，我们做了一些小修改以用于reward consistency losses的训练
+这里的mmdetection源自[mmdet](https://github.com/open-mmlab/mmdetection)，我们做了一些小修改以用于reward consistency losses的训练
 还有其他注意事项：因为一些版本问题，你需要额外做如下修改
 
 对于您环境下geo_detr/lib/python3.10/site-packages/transformers/feature_extraction_utils.py做如下修改
