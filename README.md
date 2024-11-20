@@ -26,37 +26,37 @@ pip install -r requirements.txt
 pip install numpy==1.26.4
 ```
 
-这里的mmdetection源自[mmdet](https://github.com/open-mmlab/mmdetection)，我们做了一些小修改以用于reward consistency losses的训练
+thirdparty中的[Semi-DETR](https://github.com/JCZ404/Semi-DETR)以及其中的[mmdetection](https://github.com/open-mmlab/mmdetection)是我们做了一定的修改以用于`reward consistency losses`的训练的结果
 
-还有其他注意事项：因为一些版本问题，你需要额外做如下修改
+对于您在训练过程中使用的DETR的pre-trained model，也请通过[Semi-DETR](https://github.com/JCZ404/Semi-DETR)获取
 
-对于您环境下geo_detr/lib/python3.10/site-packages/transformers/feature_extraction_utils.py做如下修改
+还有其他注意事项：因为一些版本问题，您可能需要额外做如下修改
 
-在line 355的get_feature_extractor_dict中添加subfolder = kwargs.pop("subfolder", None)（例如您可以添加在line 376），同时对于 line 402 行的 cached_file 函数调用，添加subfolder=subfolder
+对于您环境下`geo_detr/lib/python3.10/site-packages/transformers/feature_extraction_utils.py`做如下修改
+
+在`line 355`的`get_feature_extractor_dict`中添加`subfolder = kwargs.pop("subfolder", None)`（例如您可以添加在`line 376`），同时对于 `line 402 `的 `cached_file` 函数调用，添加`subfolder=subfolder`
 
 #### train
 
-请运行tools/reward_dist_train.sh或nui_reward_dist_train.sh
+请运行`tools/reward_dist_train.sh`或`nui_reward_dist_train.sh`
 
-模型将保存在sd-model-finetuned
+模型将保存在`sd-model-finetuned`
 
 #### infer
 
-请运行tools/infer.sh
+请运行`tools/infer.sh`
 
-#### eval
+#### fid
 
-##### fid
+请运行修改参数并运行`rebuild.py`生成对应的`data/eval_coco`以及`data/eval_nuimages`文件夹，这将用于测量`fid`
 
-请运行修改参数并运行rebuild.py生成对应的data/eval_coco以及data/eval_nuimages文件夹，这将用于测量fid
+（运行参数可套用`infer.sh`中对应`coco`和`nuimages`的参数）
 
-（运行参数可套用infer.sh中对应coco和nuimages的参数）
+对于`fid`的测量，请运行`fid.py fid_nui.py`，将读取`dirs.txt`以及`dirs_nui.txt`中生成图片所在的文件夹路径，并将结果保存到`fid.csv fid_nui.csv`
 
-对于fid的测量，请运行fid.py fid_nui.py，将读取dirs.txt以及dirs_nui.txt中生成图片所在的文件夹路径，并将结果保存到fid.csv fid_nui.csv
+若中间出现问题，可以检查是否是`fid`在下载`inception model`时的问题，如仍有问题，可修改fid代码，手动下载并更改加载路径[inception model](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/metrics/inception-2015-12-05.pt)
 
-若中间出现问题，可以检查是否是fid在下载inception model时的问题，如仍有问题，可修改fid代码，手动下载并更改加载路径[inception model](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/metrics/inception-2015-12-05.pt)
-
-##### mAP
+#### mAP
 
 ```
 conda create -n geo_mAP python=3.10 -y
@@ -66,5 +66,9 @@ cd thirdparty/yolo
 pip install -r requirements.txt  # install
 ```
 
-请运行eval_map.sh nui_eval_map.sh
+我们保留了[yolov5](https://github.com/ultralytics/yolov5)中必要的文件并额外添加了一些文件用于mAP的测量
+
+请运行`eval_map.sh nui_eval_map.sh`
+
+所需要的checkpoint已经包含在仓库中，当然您也可以根据[yolov5](https://github.com/ultralytics/yolov5)中的指引使用其他模型或者fine-tune任何您需要的模型
 
