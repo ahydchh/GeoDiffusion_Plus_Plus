@@ -12,7 +12,7 @@
 conda create -n geo_detr python=3.10 -y
 conda activate geo_detr
 conda install pytorch=2.1 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
-cd thirdparty/Semi-DETR/thirdparty/mmdetection/			(HEAD detached at v2.27.0)
+cd thirdparty/Semi-DETR/thirdparty/mmdetection/
 python -m pip install -e .
 cd ../../
 python -m pip install -e .
@@ -23,7 +23,7 @@ pip install cython==0.29.33
 pip install -r requirements.txt
 pip install numpy==1.26.4
 ```
-
+这里的mmdetection源自https://github.com/open-mmlab/mmdetection，我们做了一些小修改以用于reward consistency losses的训练
 还有其他注意事项：因为一些版本问题，你需要额外做如下修改
 
 对于您环境下geo_detr/lib/python3.10/site-packages/transformers/feature_extraction_utils.py做如下修改
