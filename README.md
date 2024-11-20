@@ -26,9 +26,23 @@ pip install -r requirements.txt
 pip install numpy==1.26.4
 ```
 
+### Dense Head (FCOS)
+
+```Bash
+conda create -n geo_fcos python=3.10 -y
+conda activate geo_fcos
+conda install pytorch=2.1 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+cd thirdparty/Semi-DETR/thirdparty/mmdetection/			(HEAD detached at v2.27.0)
+python -m pip install -e .
+cd ../../
+pip install cython==0.29.33
+pip install -r requirements.txt
+pip install numpy==1.26.4
+```
+
 thirdparty中的[Semi-DETR](https://github.com/JCZ404/Semi-DETR)以及其中的[mmdetection](https://github.com/open-mmlab/mmdetection)是我们做了一定的修改以用于`reward consistency losses`的训练的结果
 
-对于您在训练过程中使用的DETR的pre-trained model，也请通过[Semi-DETR](https://github.com/JCZ404/Semi-DETR)获取
+对于您在训练过程中使用的DETR的pre-trained model，也请通过[Semi-DETR](https://github.com/JCZ404/Semi-DETR)获取；对于FCOS的pre-trained model，请通过[FCOS_weight_download_url](https://download.openmmlab.com/mmdetection/v2.0/fcos/fcos_r50_caffe_fpn_gn-head_1x_coco/fcos_r50_caffe_fpn_gn-head_1x_coco-821213aa.pth)直接获取，将其重命名为`fcos_r50_caffe_fpn_gn-head_1x_coco.pth`之后放在``GeoDiffusion_Plus_Plus/thirdparty/FCOS/models``文件夹下
 
 还有其他注意事项：因为一些版本问题，您可能需要额外做如下修改
 
@@ -38,7 +52,9 @@ thirdparty中的[Semi-DETR](https://github.com/JCZ404/Semi-DETR)以及其中的[
 
 #### train
 
-请运行`tools/reward_dist_train.sh`或`nui_reward_dist_train.sh`
+``Dense:``请运行`tools/dense_reward_dist_train.sh`或`dense_nui_reward_dist_train.sh`
+
+``Sparse:``请运行`tools/sparse_reward_dist_train.sh`或`sparse_nui_reward_dist_train.sh`
 
 模型将保存在`sd-model-finetuned`
 
@@ -71,4 +87,3 @@ pip install -r requirements.txt  # install
 请运行`eval_map.sh nui_eval_map.sh`
 
 所需要的checkpoint已经包含在仓库中，当然您也可以根据[yolov5](https://github.com/ultralytics/yolov5)中的指引使用其他模型或者fine-tune任何您需要的模型
-
