@@ -30,7 +30,7 @@ pip install numpy==1.26.4
 conda create -n geo_fcos python=3.10 -y
 conda activate geo_fcos
 conda install pytorch=2.1 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
-cd thirdparty/FCOS   # (HEAD detached at v2.27.0)
+cd thirdparty/FCOS   # (modified from mmdetection HEAD detached at v2.27.0)
 python -m pip install -e .
 cd ../../
 pip install cython==0.29.33
@@ -99,7 +99,11 @@ tools/infer.sh
 
    These scripts will read the folder paths specified in `dirs.txt` and `dirs_nui.txt` and save the results in `fid.csv` and `fid_nui.csv`.
 
+<<<<<<< HEAD
 If any issues arise (e.g., downloading the Inception model for FID), manually download the [Inception model](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/metrics/inception-2015-12-05.pt) and update the loading path in the FID script.
+=======
+If any issues arise (e.g., downloading the Inception model for FID), manually download the [Inception model](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/metrics/inception-2015-12-05.pt) and update the loading path in the clean-fid packet.
+>>>>>>> anonymous
 
 ---
 
