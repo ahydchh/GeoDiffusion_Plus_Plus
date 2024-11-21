@@ -99,11 +99,7 @@ tools/infer.sh
 
    These scripts will read the folder paths specified in `dirs.txt` and `dirs_nui.txt` and save the results in `fid.csv` and `fid_nui.csv`.
 
-<<<<<<< HEAD
-If any issues arise (e.g., downloading the Inception model for FID), manually download the [Inception model](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/metrics/inception-2015-12-05.pt) and update the loading path in the FID script.
-=======
 If any issues arise (e.g., downloading the Inception model for FID), manually download the [Inception model](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/metrics/inception-2015-12-05.pt) and update the loading path in the clean-fid packet.
->>>>>>> anonymous
 
 ---
 
