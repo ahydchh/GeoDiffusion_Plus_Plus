@@ -30,7 +30,7 @@ pip install numpy==1.26.4
 conda create -n geo_fcos python=3.10 -y
 conda activate geo_fcos
 conda install pytorch=2.1 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
-cd thirdparty/Semi-DETR/thirdparty/mmdetection/   # (HEAD detached at v2.27.0)
+cd thirdparty/FCOS   # (HEAD detached at v2.27.0)
 python -m pip install -e .
 cd ../../
 pip install cython==0.29.33
